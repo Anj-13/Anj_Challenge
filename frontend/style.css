@@ -36,7 +36,7 @@ header {
     color: white;
     text-align: center;
     padding: 10px 20px;
-    margin-top: 30px;
+    position: relative;
 }
 
 .disclaimer {
@@ -61,6 +61,7 @@ main {
     justify-content: space-between;
     margin-bottom: 30px;
     flex-wrap: wrap;
+    align-items: flex-start; /* Align forms at the top */
 }
 
 /* Individual Form Cards */
@@ -72,6 +73,12 @@ main {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-card .form-rows {
+    margin-bottom: 20px;
 }
 
 .form-card h2 {
@@ -80,6 +87,11 @@ main {
     border-bottom: 2px solid #007bff;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.form-card input[type="submit"] {
+    margin-top: auto;
 }
 
 /* Form Rows Styling */
@@ -262,39 +274,24 @@ input[type="submit"]:not(.delete-btn):hover {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+@media (max-width: 1024px) {
+    .forms-container {
+        gap: 15px;
+    }
+    
+    .form-card {
+        min-width: calc(33.333% - 20px);
+    }
+}
+
 @media (max-width: 768px) {
     .forms-container {
         flex-direction: column;
+        gap: 15px;
     }
     
     .form-card {
         min-width: 100%;
-    }
-    
-    .quick-actions {
-        flex-direction: column;
-    }
-    
-    main {
-        padding: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .form-card {
-        padding: 15px;
-    }
-    
-    .medicine-item {
-        padding: 15px;
-    }
-    
-    .quick-actions {
-        flex-direction: column;
-    }
-    
-    .quick-update-btn, .quick-delete-btn {
-        width: 100%;
-        margin-bottom: 5px;
+        margin-bottom: 0;
     }
 }

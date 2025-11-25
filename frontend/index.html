@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Medicine Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,59 +15,53 @@
     </div>
     <header>
         <h1>Medicine Tracker</h1>
-        <a href=""></a> <!-- For later purpose. If not used, remove afterward-->
     </header>
     <main>
-        <!--You can send data to the backend via the available API(s), 
-        however it is not particularly user-friendly. 
-        How will you create a user-friendly solution that allows users 
-        to input data on the site and send it to the backend?-->
         <div class="forms-container">
-            <form id="add-form">
-                <h2>Add Medicine testing</h2>
+            <!-- Add Medicine Form -->
+            <form id="add-form" class="form-card">
+                <h2>Add Medicine</h2>
                 <div class="form-rows">
                     <label for="name">Name: </label>
                     <input type="text" name="name" id="name" required maxlength="50">
                     <div class="error-message" id="name-error"></div>
                 </div>
-                <br>
                 <div class="form-rows">
                     <label for="price">Price: </label>
                     <input type="number" step="0.01" name="price" id="price">
                     <div class="error-message" id="price-error"></div>
                 </div>
-                <br>
                 <input type="submit" value="Add new medicine">
             </form>
 
-            <form id="update-form">
+            <!-- Update Medicine Form -->
+            <form id="update-form" class="form-card">
                 <h2>Update Medicine</h2>
                 <div class="form-rows">
                     <label for="update-name">Name: </label>
                     <input type="text" name="update-name" id="update-name" required maxlength="50">
                     <div class="error-message" id="update-name-error"></div>
                 </div>
-                <br>
                 <div class="form-rows">
                     <label for="update-price">New Price: </label>
-                    <input type="number" name="update-price" id="update-price">
+                    <input type="number" step="0.01" name="update-price" id="update-price">
                     <div class="error-message" id="update-price-error"></div>
                 </div>
-                <br>
-                <input type="submit" value="update medicine">
+                <input type="submit" value="Update medicine">
             </form>
 
-            <form id="delete-form">
+            <!-- Delete Medicine Form -->
+            <form id="delete-form" class="form-card">
                 <h2>Delete Medicine</h2>
                 <div class="form-rows">
-                    <label for="delete-name">Medicine: </label>
-                    <input type="text" name="delete-name" id="delete-name-error" required maxlength="50">
+                    <label for="delete-name">Medicine Name: </label>
+                    <input type="text" name="delete-name" id="delete-name" required maxlength="50">
                     <div class="error-message" id="delete-name-error"></div>
                 </div>
-                <br>
-                <input type="submit" value="Delete medicine" clas="delete-btn">
+                <input type="submit" value="Delete medicine" class="delete-btn">
             </form>
         </div>
+        
         <div class="medicines-section">
             <h2>Medicines List</h2>
             <ul id="test-list"></ul>
@@ -75,6 +69,4 @@
     </main>
     <script src="script.js"></script>
 </body>
-
 </html>
-<!--can edit-->
