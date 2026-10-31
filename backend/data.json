@@ -2,39 +2,48 @@
     "medicines": [
         {
             "name": "Elixirium",
-            "price": 5.99
+            "price": 5.99,
+            "id": "2ed24be6-d7d1-4c86-a124-2be1d3876c22"
         },
         {
             "name": "Cureallium",
-            "price": 7.49
+            "price": 7.49,
+            "id": "30b7859a-65e3-4859-baca-2edba10aaf66"
         },
         {
             "name": "Healix",
-            "price": 4.99
+            "price": 4.99,
+            "id": "60a3d2c9-738f-467c-89ad-6e77ff6f7dc0"
         },
         {
             "name": "Restorix",
-            "price": 12.99
+            "price": 12.99,
+            "id": "11725d1e-4524-497c-8fba-dbc37a444ffc"
         },
         {
             "name": "",
-            "price": 15.49
+            "price": 15.49,
+            "id": "fd5c3a62-ae22-4d3c-ad0c-18d32c5f4402"
         },
         {
             "name": "Tonicast",
-            "price": null
+            "price": null,
+            "id": "3cf57ab1-92ca-4004-bf50-198812203603"
         },
         {
             "name": "Allevium",
-            "price": 19.99
+            "price": 19.99,
+            "id": "8adc1499-7a8a-4811-8aca-db8d69b22c25"
         },
         {
             "name": "Synthomaxi",
-            "price": 14.99
+            "price": 14.99,
+            "id": "0243cb98-40ad-4ed6-961d-e24dd378b3fc"
         },
         {
             "name": "Magicure",
-            "price": 200.0
+            "price": 200.0,
+            "id": "0bf010f4-5886-4713-bb3e-2e1de98fe04c"
         }
     ]
 }
