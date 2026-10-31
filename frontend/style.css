@@ -31,12 +31,19 @@ body {
 
 /* ---- Your custom styles below ---- */
 
-header {
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 10px 20px;
-    position: relative;
+:root {
+    --primary: #0b6e75;
+    --primary-dark: #08545a;
+    --danger: #b3261e;
+    --danger-dark: #8c1d18;
+    --success: #1e7e45;
+    --warning: #b26a00;
+    --muted: #5f6b76;
+    --border: #d9dfe4;
+    --surface: #ffffff;
+    --surface-alt: #f7f9fa;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --radius: 8px;
 }
 
 .disclaimer {
@@ -47,6 +54,36 @@ header {
     height: auto;
 }
 
+header {
+    background-color: var(--primary-dark);
+    color: white;
+    text-align: center;
+    padding: 24px 20px 16px;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+}
+
+header nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 20px;
+}
+
+header nav a {
+    color: white;
+    padding: 4px 2px;
+    text-underline-offset: 4px;
+}
+
+/* Keeps sections clear of the fixed disclaimer when jumping to them */
+section, form {
+    scroll-margin-top: 60px;
+}
+
 /* Main Layout */
 main {
     max-width: 1200px;
@@ -55,296 +92,319 @@ main {
 }
 
 .content-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
     gap: 20px;
-    align-items: flex-start;
+    align-items: start;
 }
 
-.medicines-section {
-    flex: 2;
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-/* Forms Container - Side by Side Layout */
-.forms-container {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-    align-items: flex-start; /* Align forms at the top */
-}
-
-/* Individual Form Cards */
-.form-card {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+.side-column {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
-.form-card .form-rows {
-    margin-bottom: 20px;
+.medicines-section, .stats-section, .form-card {
+    background: var(--surface);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
 
-.form-card h2 {
-    margin-top: 0;
-    color: #333;
-    border-bottom: 2px solid #007bff;
+.medicines-section h2, .stats-section h2, .form-card h2 {
+    margin: 0 0 16px;
     padding-bottom: 10px;
-    margin-bottom: 20px;
-    flex-shrink: 0;
-}
-
-.form-card input[type="submit"] {
-    margin-top: auto;
+    border-bottom: 2px solid var(--primary);
+    font-size: 1.25rem;
+    color: #333;
 }
 
 /* Form Rows Styling */
 .form-rows {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .form-rows label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-weight: bold;
     color: #555;
 }
 
-.form-rows input {
+.form-rows input, .form-rows select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+    background: var(--surface);
+    color: #333;
+    font: inherit;
 }
 
-.form-rows input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+.form-rows input:focus, .form-rows select:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 1px;
 }
 
 /* Button Styling */
-input[type="submit"], .delete-btn {
-    width: 100%;
-    padding: 12px;
+button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1rem;
+    font: inherit;
     font-weight: bold;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
+    transition: background-color 0.2s ease;
 }
 
-input[type="submit"]:not(.delete-btn) {
-    background-color: #007bff;
+button:focus-visible, header nav a:focus-visible {
+    outline: 2px solid #333;
+    outline-offset: 2px;
+}
+
+header nav a:focus-visible {
+    outline-color: white;
+}
+
+button:disabled {
+    cursor: progress;
+    opacity: 0.65;
+}
+
+.primary-btn, .delete-btn {
+    width: 100%;
+    padding: 12px;
     color: white;
 }
 
-input[type="submit"]:not(.delete-btn):hover {
-    background-color: #0056b3;
+.primary-btn {
+    background-color: var(--primary);
+}
+
+.primary-btn:hover:enabled {
+    background-color: var(--primary-dark);
 }
 
 .delete-btn {
-    background-color: #dc3545;
-    color: white;
+    background-color: var(--danger);
 }
 
-.delete-btn:hover {
-    background-color: #c82333;
+.delete-btn:hover:enabled {
+    background-color: var(--danger-dark);
 }
 
-/* Medicines List Section */
-.medicines-section {
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+.secondary-btn {
+    padding: 8px 14px;
+    border: 1px solid var(--primary);
+    background: var(--surface);
+    color: var(--primary-dark);
 }
 
-.medicines-section h2 {
-    margin-top: 0;
-    color: #333;
-    border-bottom: 2px solid #28a745;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+.secondary-btn:hover:enabled {
+    background: var(--surface-alt);
 }
 
 /* Medicine Item Styling */
-.medicine-item {
-    background: #f8f9fa;
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 6px;
-    border-left: 4px solid #007bff;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.medicine-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.medicine-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+.list-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    color: var(--muted);
+}
+
+.list-status[hidden] {
+    display: none;
+}
+
+.medicine-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    border-radius: 6px;
+}
+
+.medicine-item:has(.missing-value) {
+    border-left-color: var(--warning);
 }
 
 .medicine-item h3 {
-    font-size: 1.4rem;
-    margin: 0 0 10px 0;
-    color: darkcyan;
+    font-size: 1.1rem;
+    margin: 0 0 4px;
+    color: #333;
+    overflow-wrap: anywhere;
 }
 
 .medicine-item p {
-    margin: 5px 0;
-    color: #666;
-    font-size: 1.1rem;
+    margin: 0;
+    color: var(--muted);
+}
+
+.medicine-item .missing-value {
+    color: var(--warning);
+    font-style: italic;
 }
 
 .quick-actions {
-    margin-top: 15px;
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .quick-update-btn, .quick-delete-btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 8px 12px;
+    color: white;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
 }
 
 .quick-update-btn {
-    background-color: #28a745;
-    color: white;
+    background-color: var(--primary);
 }
 
-.quick-update-btn:hover {
-    background-color: #218838;
-    transform: translateY(-1px);
+.quick-update-btn:hover:enabled {
+    background-color: var(--primary-dark);
 }
 
 .quick-delete-btn {
-    background-color: #dc3545;
-    color: white;
+    background-color: var(--danger);
 }
 
-.quick-delete-btn:hover {
-    background-color: #c82333;
-    transform: translateY(-1px);
+.quick-delete-btn:hover:enabled {
+    background-color: var(--danger-dark);
 }
 
 /* Error and Success Messages */
 .error-message {
-    color: #dc3545;
+    display: none;
+    color: var(--danger);
     font-size: 0.9rem;
-    height: 20px;
     margin-top: 5px;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.input-error {
-    border: 2px solid #dc3545 !important;
 }
 
 .error-message.show {
-    visibility: visible;
-    opacity: 1;
+    display: block;
+}
+
+.input-error {
+    border: 2px solid var(--danger) !important;
+}
+
+.notifications {
+    position: fixed;
+    top: 48px;
+    right: 16px;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(360px, calc(100vw - 32px));
+}
+
+.success-message, .error-message-global {
+    color: white;
+    padding: 14px 16px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    overflow-wrap: anywhere;
 }
 
 .success-message {
-    background-color: #28a745;
-    color: white;
-    padding: 15px;
-    margin: 20px auto;
-    border-radius: 6px;
-    text-align: center;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: var(--success);
 }
 
 .error-message-global {
-    background-color: #dc3545;
-    color: white;
-    padding: 15px;
-    margin: 20px auto;
-    border-radius: 6px;
-    text-align: center;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: var(--danger);
 }
 
 /* stats CSS style */
-
-.stats-section {
-    flex: 1;
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
 .stats-card {
     text-align: center;
-    padding: 20px;
 }
 
 .stats-card h3 {
-    color: black;
-    margin-bottom: 15px;
+    margin: 0 0 8px;
+    font-size: 1rem;
+    color: var(--muted);
 }
 
 .stats-card p {
-    color: limegreen;
+    color: var(--primary-dark);
     font-size: 2rem;
-    margin: 10px 0;
+    font-weight: bold;
+    margin: 0;
 }
 
-/* extra */
+.stats-card small {
+    display: block;
+    min-height: 1.2em;
+    margin: 4px 0 14px;
+    color: var(--muted);
+}
 
-@media (max-width: 1024px) {
-    .forms-container {
-        gap: 15px;
+/* Responsive layout */
+@media (max-width: 960px) {
+    /* The disclaimer wraps onto a second line here, so the header needs extra room */
+    header {
+        padding-top: 40px;
     }
-    
-    .form-card {
-        min-width: calc(33.333% - 20px);
+
+    .content-container {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .side-column {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
     }
 }
 
-@media (max-width: 768px) {
-    .forms-container {
+@media (max-width: 640px) {
+    /* The disclaimer can reach four lines at this width */
+    header {
+        padding-top: 64px;
+    }
+
+    main {
+        padding: 16px;
+    }
+
+    .notifications {
+        top: 90px;
+    }
+
+    .side-column {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* Stacks every record the same way, whatever the length of its name */
+    .medicine-item {
         flex-direction: column;
-        gap: 15px;
-    }
-    
-    .form-card {
-        min-width: 100%;
-        margin-bottom: 0;
-    }
-}
-
-@media (max-width: 768px) {
-    .content-container{
-        flex-direction: column;
+        align-items: stretch;
     }
 
-    .medicines-section, .stats-section {
-        flex: none;
-        width: 100%;
+    .quick-actions {
+        flex-wrap: nowrap;
+    }
+
+    .quick-actions button {
+        flex: 1;
+    }
+
+    section, form {
+        scroll-margin-top: 90px;
     }
 }

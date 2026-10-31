@@ -15,68 +15,77 @@
     </div>
     <header>
         <h1>Medicine Tracker</h1>
+        <nav aria-label="Page sections">
+            <a href="#medicines">Medicines</a>
+            <a href="#report">Report</a>
+            <a href="#add-form">Add</a>
+            <a href="#update-form">Update</a>
+            <a href="#delete-form">Delete</a>
+        </nav>
     </header>
+    <div class="notifications" id="notifications" role="status" aria-live="polite"></div>
     <main>
-        <div class="forms-container">
-            <!-- Add Medicine Form -->
-            <form id="add-form" class="form-card">
-                <h2>Add Medicine</h2>
-                <div class="form-rows">
-                    <label for="name">Name: </label>
-                    <input type="text" name="name" id="name" required maxlength="50">
-                    <div class="error-message" id="name-error"></div>
-                </div>
-                <div class="form-rows">
-                    <label for="price">Price: </label>
-                    <input type="number" step="0.01" name="price" id="price">
-                    <div class="error-message" id="price-error"></div>
-                </div>
-                <input type="submit" value="Add new medicine">
-            </form>
-
-            <!-- Update Medicine Form -->
-            <form id="update-form" class="form-card">
-                <h2>Update Medicine</h2>
-                <div class="form-rows">
-                    <label for="update-name">Name: </label>
-                    <input type="text" name="update-name" id="update-name" required maxlength="50">
-                    <div class="error-message" id="update-name-error"></div>
-                </div>
-                <div class="form-rows">
-                    <label for="update-price">New Price: </label>
-                    <input type="number" step="0.01" name="update-price" id="update-price">
-                    <div class="error-message" id="update-price-error"></div>
-                </div>
-                <input type="submit" value="Update medicine">
-            </form>
-
-            <!-- Delete Medicine Form -->
-            <form id="delete-form" class="form-card">
-                <h2>Delete Medicine</h2>
-                <div class="form-rows">
-                    <label for="delete-name">Medicine Name: </label>
-                    <input type="text" name="delete-name" id="delete-name" required maxlength="50">
-                    <div class="error-message" id="delete-name-error"></div>
-                </div>
-                <input type="submit" value="Delete medicine" class="delete-btn">
-            </form>
-        </div>
-
         <div class="content-container">
-            <div class="medicines-section">
+            <section class="medicines-section" id="medicines">
                 <h2>Medicines List</h2>
-                <ul id="test-list"></ul>
-            </div>
+                <div class="list-status" id="list-status">Loading medicines...</div>
+                <ul class="medicine-list" id="medicine-list"></ul>
+            </section>
 
-            <div class="stats-section">
-                <h2>Quarterly Report</h2>
-                <div class="stats-card">
-                    <h3>Average Medicine Price</h3>
-                    <p id="average-price">Loading...</p>
-                    <button onclick="loadAveragePrice()">Refresh Report</button>
-                </div>
+            <div class="side-column">
+                <section class="stats-section" id="report">
+                    <h2>Quarterly Report</h2>
+                    <div class="stats-card">
+                        <h3>Average Medicine Price</h3>
+                        <p id="average-price">Loading...</p>
+                        <small id="average-basis"></small>
+                        <button type="button" class="secondary-btn" id="refresh-report">Refresh Report</button>
+                    </div>
+                </section>
+
+                <!-- Add Medicine Form -->
+                <form id="add-form" class="form-card" novalidate>
+                    <h2>Add Medicine</h2>
+                    <div class="form-rows">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" required maxlength="50" autocomplete="off">
+                        <div class="error-message" id="name-error"></div>
+                    </div>
+                    <div class="form-rows">
+                        <label for="price">Price ($)</label>
+                        <input type="number" step="0.01" min="0" name="price" id="price" required>
+                        <div class="error-message" id="price-error"></div>
+                    </div>
+                    <button type="submit" class="primary-btn">Add new medicine</button>
+                </form>
+
+                <!-- Update Medicine Form -->
+                <form id="update-form" class="form-card" novalidate>
+                    <h2>Update Medicine</h2>
+                    <div class="form-rows">
+                        <label for="update-id">Medicine</label>
+                        <select name="update-id" id="update-id" required></select>
+                        <div class="error-message" id="update-id-error"></div>
+                    </div>
+                    <div class="form-rows">
+                        <label for="update-price">New Price ($)</label>
+                        <input type="number" step="0.01" min="0" name="update-price" id="update-price" required>
+                        <div class="error-message" id="update-price-error"></div>
+                    </div>
+                    <button type="submit" class="primary-btn">Update medicine</button>
+                </form>
+
+                <!-- Delete Medicine Form -->
+                <form id="delete-form" class="form-card" novalidate>
+                    <h2>Delete Medicine</h2>
+                    <div class="form-rows">
+                        <label for="delete-id">Medicine</label>
+                        <select name="delete-id" id="delete-id" required></select>
+                        <div class="error-message" id="delete-id-error"></div>
+                    </div>
+                    <button type="submit" class="delete-btn">Delete medicine</button>
+                </form>
             </div>
-        </div>
         </div>
     </main>
     <script src="script.js"></script>
